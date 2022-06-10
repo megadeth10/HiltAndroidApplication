@@ -2,8 +2,8 @@ package com.my.hiltapplication.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.deleo.c2cmarketplace.network.json.category.CategoryRequestBody
-import com.deleo.c2cmarketplace.network.json.category.CategoryResponse
+import com.my.c2cmarketplace.network.json.category.CategoryRequestBody
+import com.my.c2cmarketplace.network.json.category.CategoryResponse
 import com.my.hiltapplication.base.BaseNetworkViewModel
 import com.my.hiltapplication.network.NetworkUtil
 import com.my.hiltapplication.noupdate.service.CategoryService

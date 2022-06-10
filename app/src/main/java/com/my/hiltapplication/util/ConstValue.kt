@@ -26,7 +26,7 @@ object ConstValue {
     const val YEAR_IN_MILLISECOND: Long = 365 * DAY_IN_MILLISECOND
 
     //7.0 android.os.FileUriExposedException
-    const val PROVIDER = "com.deleo.c2cmarketplace.fileprovider"
+    const val PROVIDER = "com.my.c2cmarketplace.fileprovider"
     //7.0 android.os.FileUriExposedException
 
     const val DATE_DISPLAY_FORMAT = "yyyy.MM.dd."
