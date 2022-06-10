@@ -1,9 +1,9 @@
 /build
-/src/main/java/com/deleo/hitapplication/noupdate
-/src/main/java/com/deleo/hiltapplication/noupdate/response/CategoryRequestBody.kt
-/src/main/java/com/deleo/hiltapplication/noupdate/response/CategoryResponse.kt
-/src/main/java/com/deleo/hiltapplication/noupdate/header/HeaderInterceptor.kt
-/src/main/java/com/deleo/hiltapplication/noupdate/response/VersionResponse.kt
-/src/main/java/com/deleo/hiltapplication/noupdate/variant/Name.kt
-/src/main/java/com/deleo/hiltapplication/noupdate/service/CategoryService.kt
-/src/main/java/com/deleo/hiltapplication/noupdate/service/VersionService.kt
+/src/main/java/com/my/hitapplication/noupdate
+/src/main/java/com/my/hiltapplication/noupdate/response/CategoryRequestBody.kt
+/src/main/java/com/my/hiltapplication/noupdate/response/CategoryResponse.kt
+/src/main/java/com/my/hiltapplication/noupdate/header/HeaderInterceptor.kt
+/src/main/java/com/my/hiltapplication/noupdate/response/VersionResponse.kt
+/src/main/java/com/my/hiltapplication/noupdate/variant/Name.kt
+/src/main/java/com/my/hiltapplication/noupdate/service/CategoryService.kt
+/src/main/java/com/my/hiltapplication/noupdate/service/VersionService.kt
