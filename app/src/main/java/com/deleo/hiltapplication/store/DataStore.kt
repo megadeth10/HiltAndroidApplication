@@ -10,13 +10,11 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
 import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Inject
 import javax.inject.Singleton
 
-//@Module
-//@InstallIn(ActivityRetainedComponent::class)
-@Singleton
-class DataStore @Inject constructor(@ApplicationContext context : Context): IStoreCallback, BaseStore() {
+class DataStore  @Inject constructor(context : Context): IStoreCallback, BaseStore() {
     private var data:String? = null
 
 

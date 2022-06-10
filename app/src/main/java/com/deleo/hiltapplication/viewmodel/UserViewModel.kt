@@ -1,28 +1,32 @@
 package com.deleo.hiltapplication.viewmodel
 
 import android.util.Log
-import android.util.MutableDouble
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.deleo.hiltapplication.base.BaseViewModel
+import com.deleo.hiltapplication.base.BaseNetworkViewModel
+import com.deleo.hiltapplication.noupdate.response.VersionResponse
+import com.deleo.hiltapplication.noupdate.service.VersionService
 import com.deleo.hiltapplication.store.UserStore
-import dagger.Module
-import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityRetainedComponent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.components.SingletonComponent
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.observers.DisposableSingleObserver
+import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
-// single instance
-//@Module
-//@InstallIn(SingletonComponent::class)
-
 @HiltViewModel // 공식 inject annotation
-class UserViewModel @Inject constructor(private var userStore : UserStore) : BaseViewModel() {
+class UserViewModel @Inject constructor(
+    private val userStore : UserStore,
+    private val versionService : VersionService
+) : BaseNetworkViewModel() {
     private var _modelData : MutableLiveData<String?> = MutableLiveData(null)
     val modelData : MutableLiveData<String?> = _modelData
 
+    private var _versionData : MutableLiveData<VersionResponse?> = MutableLiveData(null)
+    val versionData : MutableLiveData<VersionResponse?> = _versionData
+
+    private val apiNameVersion = "api_name_version"
+    init {
+        Log.e(tagName, "init() versionModule: $versionService")
+    }
     fun setModelData(text : String?) = text.also { this._modelData.value = it }
 
     fun setUser(text : String?) = text.also {
@@ -30,8 +34,43 @@ class UserViewModel @Inject constructor(private var userStore : UserStore) : Bas
     }
 
     fun getUser() = this.userStore.getUserStore()
+
+
     fun currentState() {
         this.userStore.currentState()
+    }
+
+    fun setVersion(data : VersionResponse?) {
+        this._versionData.value = data
+    }
+
+    fun getVersion() {
+        cancelObserver(apiNameVersion)
+        addObserver(apiNameVersion,
+            versionService.getModule().getVersion().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableSingleObserver<VersionResponse>() {
+                    override fun onSuccess(t : VersionResponse) {
+                        setVersion(t)
+                    }
+
+                    override fun onError(e : Throwable) {
+                        Log.e(tagName, "getVersion() error", e)
+                    }
+
+                })
+        )
+//        addObserver(apiNameVersion,
+//            versionModule.getModule(
+//                onSuccess = {
+//                    if (it is VersionResponse) {
+//                        Log.e(tagName, "getVersion() result: $it")
+//                    }
+//                },
+//                onError = {
+//                    Log.e(tagName, "getVersion() error", it)
+//                }
+//            )
+//        )
     }
 
     override fun getLogName() = UserViewModel::class.simpleName

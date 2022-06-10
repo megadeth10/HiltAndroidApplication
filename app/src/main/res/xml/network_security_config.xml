@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <!-- kakao map -->
+<!--        <domain includeSubdomains="true">ot0.maps.daum-img.net</domain>-->
+<!--        <domain includeSubdomains="true">ot1.maps.daum-img.net</domain>-->
+<!--        <domain includeSubdomains="true">ot2.maps.daum-img.net</domain>-->
+<!--        <domain includeSubdomains="true">ot3.maps.daum-img.net</domain>-->
+
+<!--        &lt;!&ndash; Barcode API Images &ndash;&gt;-->
+<!--        <domain includeSubdomains="true">gs1.koreannet.or.kr</domain>-->
+<!--        <domain includeSubdomains="true">api.koreannet.or.kr</domain>-->
+
+<!--        &lt;!&ndash; 다음 주소 검색 &ndash;&gt;-->
+<!--        <domain includeSubdomains="true">dapi.kakao.com</domain>-->
+<!--        <domain includeSubdomains="true">postcode.map.daum.net</domain>-->
+<!--        <domain includeSubdomains="true">t1.daumcdn.net</domain>-->
+<!--        <domain includeSubdomains="true">m.map.kakao.com</domain>-->
+
+        <!-- dev server domain build type으로 이 파일 분리해야함.-->
+        <domain includeSubdomains="true">dev-api.reflea.co.kr</domain>
+<!--        &lt;!&ndash; 첫 dev domain 카테고리와 일부 배너 이미지의 domain 문제로 추가함.&ndash;&gt;-->
+<!--        <domain includeSubdomains="true">ec2-3-36-241-247.ap-northeast-2.compute.amazonaws.com</domain>-->
+
+<!--        &lt;!&ndash; todo 임시 확인용 릴리즈시에 삭제 해야함. &ndash;&gt;-->
+<!--        <domain includeSubdomains="true">m.naver.com</domain>-->
+<!--        <domain includeSubdomains="true">m.coupang.com</domain>-->
+
+<!--        &lt;!&ndash; avd emulator ip &ndash;&gt;-->
+<!--        <domain includeSubdomains="true">10.0.2.2</domain>-->
+    </domain-config>
+</network-security-config>
