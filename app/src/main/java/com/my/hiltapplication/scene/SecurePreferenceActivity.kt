@@ -59,6 +59,7 @@ class SecurePreferenceActivity : BaseActivity<ActivitySecurepreferenceBinding>()
                 this.contentBinding.etInput.text.toString().let {
                     if (it.isNotEmpty()) {
                         this.securePreferenceViewModel.save(it)
+                        onBackPressed()
                     }
                 }
             }

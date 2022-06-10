@@ -1,13 +1,11 @@
 package com.my.hiltapplication.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.my.hiltapplication.base.BaseViewModel
 import com.my.hiltapplication.securepreference.SecureSharedPreferences
 import com.my.hiltapplication.securepreference.callback.SecureStoreCallback
-import com.my.hiltapplication.util.Log
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -242,9 +240,8 @@ class SecurePreferenceViewModel @Inject constructor(
     }
 
     fun setProgressState(newState : Boolean?) {
-        CoroutineScope(Dispatchers.Main).launch {
-            this@SecurePreferenceViewModel._progressState.value = newState
-            Log.e(tagName, "setProgressState() state: $newState")
+        viewModelScope.launch {
+            this@SecurePreferenceViewModel._progressState.postValue(newState)
         }
     }
 
