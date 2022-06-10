@@ -49,6 +49,10 @@ android {
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        // 화면 개발용
+        screen {
+            initWith debug
+        }
     }
 
 
@@ -75,6 +79,23 @@ android {
     }
     ndkVersion '21.4.7075529'
     // NDK
+
+    sourceSets {
+        main {
+            res.srcDirs =
+                    [
+                            'src/main/res'
+                    ]
+        }
+        screen {
+            java {
+                srcDirs 'src/screen/java'
+            }
+            res {
+                srcDirs 'src/screen/res'
+            }
+        }
+    }
 }
 
 dependencies {

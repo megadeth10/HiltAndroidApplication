@@ -1,3 +1,4 @@
 <resources>
     <dimen name="dp50">50dp</dimen>
+    <dimen name="dp10">10dp</dimen>
 </resources>

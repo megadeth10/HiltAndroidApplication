@@ -11,6 +11,9 @@
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.378125" />
         <entry key="app/src/main/res/layout/layout_circle_progress.xml" value="0.378125" />
         <entry key="app/src/main/res/layout/layout_empty_view.xml" value="0.378125" />
+        <entry key="app/src/screen/res/layout/activity_image_parse.xml" value="0.378125" />
+        <entry key="app/src/screen/res/layout/activity_short_cut.xml" value="0.378125" />
+        <entry key="app/src/screen/res/layout/layout_activity_item.xml" value="0.378125" />
       </map>
     </option>
   </component>
