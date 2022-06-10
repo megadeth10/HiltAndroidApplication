@@ -6,6 +6,9 @@ import com.my.hiltapplication.securepreference.SecureSharedPreferences
 import com.my.hiltapplication.securepreference.callback.SecureStoreCallback
 import com.my.hiltapplication.util.Log
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,6 +24,214 @@ class SecurePreferenceViewModel @Inject constructor(
 
     private val storeKeyName = "aaa"
 
+    private val list = arrayListOf<String>(
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+    )
 
     fun initData() {
         secureSharedPreferences.getString(storeKeyName, "").apply {
@@ -31,8 +242,10 @@ class SecurePreferenceViewModel @Inject constructor(
     }
 
     fun setProgressState(newState : Boolean?) {
-        this._progressState.value = newState
-        Log.e(tagName, "setProgressState() state: $newState")
+        CoroutineScope(Dispatchers.Main).launch {
+            this@SecurePreferenceViewModel._progressState.value = newState
+            Log.e(tagName, "setProgressState() state: $newState")
+        }
     }
 
     private fun setData(text : String?) {
@@ -40,7 +253,7 @@ class SecurePreferenceViewModel @Inject constructor(
     }
 
 
-    fun save(newText:String) {
+    fun save(newText : String) {
         this.setProgressState(true)
         this.setData(null)
         val callback : SecureStoreCallback = object : SecureStoreCallback {
@@ -48,8 +261,8 @@ class SecurePreferenceViewModel @Inject constructor(
                 this@SecurePreferenceViewModel.setProgressState(false)
             }
         }
-
-        secureSharedPreferences.storeString(this.storeKeyName, newText, callback)
+        secureSharedPreferences.storeArrayList("aaaalist", this.list, callback)
+//        secureSharedPreferences.storeString(this.storeKeyName, newText, callback)
     }
 
     override fun getLogName() = SecurePreferenceViewModel::class.simpleName
