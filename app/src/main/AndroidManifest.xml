@@ -26,6 +26,9 @@
         <activity
             android:name=".scene.SecondActivity"
             android:exported="false" />
+        <activity
+            android:name=".scene.SecurePreferenceActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

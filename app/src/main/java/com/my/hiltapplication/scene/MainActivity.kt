@@ -10,6 +10,7 @@ import com.my.hiltapplication.Value
 import com.my.hiltapplication.base.BaseActivity
 import com.my.hiltapplication.databinding.ActivityMainBinding
 import com.my.hiltapplication.scene.fragment.MainFragment
+import com.my.hiltapplication.util.AppUtil
 import com.my.hiltapplication.util.Log
 import com.my.hiltapplication.viewmodel.DataViewModel
 import com.my.hiltapplication.viewmodel.UserViewModel
@@ -26,6 +27,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), View.OnClickListener {
         this.contentBinding.btnAction.setOnClickListener(this)
         this.contentBinding.btnAction2.setOnClickListener(this)
         this.contentBinding.btnAction3.setOnClickListener(this)
+        this.contentBinding.btnAction4.setOnClickListener(this)
         this.userViewModel.setModelData(this.tag)
         this.userViewModel.modelData.observe(this, Observer {
             Log.e(tag, "나 불렀니 modelData: $it")
@@ -73,6 +75,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), View.OnClickListener {
             }
             this.contentBinding.btnAction3.id -> {
                 this.userViewModel.getVersion()
+            }
+            this.contentBinding.btnAction4.id -> {
+                AppUtil.startSecurePreferenceActivity(this)
             }
         }
     }

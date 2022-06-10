@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:app="http://schemas.android.com/apk/res-auto">
+    <style name="circleProgressBarStyle">
+        <item name="android:indeterminateTint">?attr/colorOnPrimary</item>
+    </style>
+    <style name="circleProgressBarTextStyle">
+        <item name="background">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>

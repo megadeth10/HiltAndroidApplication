@@ -46,6 +46,15 @@
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@id/btn_action2" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_action4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="보안 프리퍼런스"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/btn_action3" />
+
         <FrameLayout
             android:id="@+id/layout_frame"
             android:layout_width="match_parent"
@@ -54,7 +63,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_action3" />
+            app:layout_constraintTop_toBottomOf="@id/btn_action4" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

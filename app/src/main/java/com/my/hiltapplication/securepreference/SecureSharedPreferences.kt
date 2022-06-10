@@ -9,6 +9,8 @@ import com.my.hiltapplication.util.Log
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import org.json.JSONArray
 import org.json.JSONException
 import java.util.*
@@ -43,16 +45,27 @@ class SecureSharedPreferences @Inject constructor(@ApplicationContext context : 
     fun storeString(key : String, value : String, callback : SecureStoreCallback?) {
         val time = Calendar.getInstance().timeInMillis
         val preferenceObject = PreferencesObject(key, value, callback)
-        Single.just(preferenceObject)
-            .subscribeOn(Schedulers.newThread())
-            .observeOn(Schedulers.io())
-            .subscribe { t : PreferencesObject ->
-                val editor = sharedPreferences.edit()
-                editor.putString(t.key, t.value as String)
-                editor.apply()
-                t.function?.storeFinish()
-                Log.e(tagName, String.format("SecurePreferences.setValue() finish"))
+        CoroutineScope(Dispatchers.IO).run {
+            val editor = sharedPreferences.edit()
+            editor.putString(preferenceObject.key, preferenceObject.value as String)
+            editor.apply()
+            preferenceObject.function?.let {
+                CoroutineScope(Dispatchers.Default).run {
+                    Log.e(tagName, String.format("SecurePreferences.setValue() finish"))
+                    it.storeFinish()
+                }
             }
+        }
+//        Single.just(preferenceObject)
+//            .subscribeOn(Schedulers.newThread())
+//            .observeOn(Schedulers.io())
+//            .subscribe { t : PreferencesObject ->
+//                val editor = sharedPreferences.edit()
+//                editor.putString(t.key, t.value as String)
+//                editor.apply()
+//                t.function?.storeFinish()
+//                Log.e(tagName, String.format("SecurePreferences.setValue() finish"))
+//            }
         Log.e(
             tagName, String.format(
                 "set() consumed time: %d",
@@ -104,7 +117,6 @@ class SecureSharedPreferences @Inject constructor(@ApplicationContext context : 
     }
 
     fun storeBoolean(
-        ctx : Context,
         key : String,
         value : Boolean,
         callback : SecureStoreCallback?

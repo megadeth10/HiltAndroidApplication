@@ -3,9 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bg_transparent_ripple.xml" value="0.1425" />
+        <entry key="app/src/main/res/drawable/list_animation.xml" value="0.1425" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.26811594202898553" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.378125" />
+        <entry key="app/src/main/res/layout/activity_securepreference.xml" value="0.378125" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.378125" />
+        <entry key="app/src/main/res/layout/layout_circle_progress.xml" value="0.378125" />
+        <entry key="app/src/main/res/layout/layout_empty_view.xml" value="0.378125" />
       </map>
     </option>
   </component>

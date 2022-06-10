@@ -22,8 +22,8 @@ class SingletonModule {
 
     @Provides
     @Singleton
-    fun getTokenStore(userStore : UserStore) : TokenStore {
-        return TokenStore(userStore)
+    fun getTokenStore(userStore : UserStore, secureSharedPreferences:SecureSharedPreferences) : TokenStore {
+        return TokenStore(userStore, secureSharedPreferences)
     }
 
     @Provides
