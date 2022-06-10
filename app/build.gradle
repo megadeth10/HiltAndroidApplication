@@ -16,6 +16,12 @@ android {
         versionName "0.0.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++17"
+            }
+        }
     }
 
     signingConfigs {
@@ -32,6 +38,11 @@ android {
             minifyEnabled false
             debuggable true
             signingConfig signingConfigs.debug
+            externalNativeBuild {
+                cmake {
+                    arguments "-DCMAKE_BUILD_TYPE=debug"
+                }
+            }
         }
         release {
             minifyEnabled false
@@ -39,6 +50,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -53,6 +65,16 @@ android {
         viewBinding = true
         dataBinding = true
     }
+
+    // NDK
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.10.2"
+        }
+    }
+    ndkVersion '21.4.7075529'
+    // NDK
 }
 
 dependencies {

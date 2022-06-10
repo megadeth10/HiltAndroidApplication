@@ -6,6 +6,7 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.my.hiltapplication.R
+import com.my.hiltapplication.Value
 import com.my.hiltapplication.base.BaseActivity
 import com.my.hiltapplication.databinding.ActivityMainBinding
 import com.my.hiltapplication.scene.fragment.MainFragment
@@ -37,6 +38,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), View.OnClickListener {
                 .addToBackStack(tagName)
                 .commit()
         }
+        Log.e(tag, "native Value a: ${Value.a()}")
     }
 
     override fun onSaveInstanceState(outState : Bundle) {
