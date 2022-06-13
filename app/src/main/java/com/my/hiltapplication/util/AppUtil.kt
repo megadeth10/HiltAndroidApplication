@@ -3,7 +3,9 @@ package com.my.hiltapplication.util
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Parcelable
+import android.provider.Settings
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
 import com.my.hiltapplication.scene.SecurePreferenceActivity
@@ -106,6 +108,17 @@ object AppUtil {
 //        val gaExtra = hashMapOf(ConstValue.TAP_POSITION to tabPosition) as HashMap<String, Any>
 //        AppAnalytics.sendGAScreenName(gaExtra, GoogleAnalyticsEvent.MAIN_SCREEN)
 //    }
+
+    /**
+     * 앱 권한 설정 화면으로 이동
+     */
+    fun gotoSettingForPermission(context: Context) {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        val uri: Uri = Uri.fromParts("package", context.packageName, null)
+        intent.data = uri
+        this.startActivity(context, intent)
+//        AppAnalytics.sendGAScreenName(null, GoogleAnalyticsEvent.APP_PERMISSION_SETTING)
+    }
 
     /**
      * 인텐트 생성

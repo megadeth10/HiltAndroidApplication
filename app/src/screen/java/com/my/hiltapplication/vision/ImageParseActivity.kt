@@ -1,4 +1,4 @@
-package com.my.c2cmarketplace.vision
+package com.my.hiltapplication.vision
 
 import android.view.View
 import com.my.hiltapplication.base.BaseActivity

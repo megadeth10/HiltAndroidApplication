@@ -1,4 +1,4 @@
-package com.my.c2cmarketplace.vision
+package com.my.hiltapplication.vision
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

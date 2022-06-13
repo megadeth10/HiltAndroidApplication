@@ -1,12 +1,12 @@
-package com.my.c2cmarketplace.adapter
+package com.my.hiltapplication.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.my.c2cmarketplace.viewholder.ActivityViewHolder
-import com.my.c2cmarketplace.scene.ShortCutActivity
+import com.my.hiltapplication.viewholder.ActivityViewHolder
+import com.my.hiltapplication.scene.ShortCutActivity
 import com.my.hiltapplication.R
 import com.my.hiltapplication.databinding.LayoutActivityItemBinding
 

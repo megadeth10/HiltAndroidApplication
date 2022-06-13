@@ -11,7 +11,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="activity for result test"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -25,8 +24,17 @@
             android:id="@+id/btn_action2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ActivityResultContract test"
+            android:text="ActivityResultContract take TakePicture"
             app:layout_constraintTop_toBottomOf="@id/btn_action" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="center"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintTop_toBottomOf="@id/btn_action2"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

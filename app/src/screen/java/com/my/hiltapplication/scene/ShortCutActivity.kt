@@ -1,4 +1,4 @@
-package com.my.c2cmarketplace.scene
+package com.my.hiltapplication.scene
 
 import android.app.Activity
 import android.os.Bundle
@@ -8,11 +8,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.my.c2cmarketplace.adapter.ActivityAdapter
+import com.my.hiltapplication.adapter.ActivityAdapter
 import com.my.hiltapplication.R
 import com.my.hiltapplication.databinding.ActivityShortCutBinding
-import com.my.hiltapplication.scene.MainActivity
-import com.my.hiltapplication.scene.SecurePreferenceActivity
 import com.my.hiltapplication.util.AppActivityResultCode
 import com.my.hiltapplication.util.AppUtil
 import com.my.hiltapplication.util.Log
