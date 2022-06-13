@@ -1,15 +1,19 @@
-package com.my.c2cmarketplace.screen
+package com.my.c2cmarketplace.scene
 
-import android.content.Intent
+import android.app.Activity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.my.c2cmarketplace.adapter.ActivityAdapter
 import com.my.hiltapplication.R
 import com.my.hiltapplication.databinding.ActivityShortCutBinding
 import com.my.hiltapplication.scene.MainActivity
 import com.my.hiltapplication.scene.SecurePreferenceActivity
+import com.my.hiltapplication.util.AppActivityResultCode
 import com.my.hiltapplication.util.AppUtil
 import com.my.hiltapplication.util.Log
 
@@ -55,6 +59,11 @@ class ShortCutActivity : AppCompatActivity(), View.OnClickListener {
                 "로컬 보안 저장소",
                 SecurePreferenceActivity::class.java,
             ),
+            ActivityItem(
+                "result code 테스트",
+                ForResultTestActivity::class.java,
+                resultCode = AppActivityResultCode.ResultCodeBack
+            ),
         )
     }
 
@@ -68,10 +77,11 @@ class ShortCutActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         it.cls?.let { cls ->
                             val intent = AppUtil.makeIntent(this, cls, it.options)
-                            if (it.requestCode == null) {
+                            if (it.resultCode == null) {
                                 this.startActivity(intent)
                             } else {
-                                this.startActivityForResult(intent, it.requestCode!!)
+//                                this.startActivityForResult(intent, it.requestCode!!)
+                                startActivityForResult.launch(intent)
                             }
                         }
                     }
@@ -81,19 +91,41 @@ class ShortCutActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    private val startActivityForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        Log.e(
+            "ShortCutActivity",
+            "registerForActivityResult() resultCode: ${it.resultCode}"
+        )
+        when(it.resultCode) {
+            Activity.RESULT_OK -> {
+
+            }
+            AppActivityResultCode.ResultCodeBack -> {
+                it.data?.let { data ->
+                    data.getStringExtra(ForResultTestActivity.resultData) ?.let { result ->
+                        Toast.makeText(this, result, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            else -> {
+
+            }
+        }
+    }
+
     class ActivityItem(
         var name: String = "",
         var cls: Class<*>? = null,
         var options: HashMap<String, Any>? = null,
-        var requestCode: Int? = null,
+        var resultCode: Int? = null,
         var callback: (() -> Unit)? = null
     )
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        Log.e(
-            "ShortCutActivity",
-            "onActivityResult() requestCode: $requestCode resultCode: $resultCode"
-        )
-        super.onActivityResult(requestCode, resultCode, data)
-    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        Log.e(
+//            "ShortCutActivity",
+//            "onActivityResult() requestCode: $requestCode resultCode: $resultCode"
+//        )
+//        super.onActivityResult(requestCode, resultCode, data)
+//    }
 }

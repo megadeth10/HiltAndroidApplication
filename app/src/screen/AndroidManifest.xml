@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application>
-        <activity android:name="com.my.c2cmarketplace.screen.ShortCutActivity"
+        <activity android:name="com.my.c2cmarketplace.scene.ShortCutActivity"
             android:screenOrientation="fullSensor"
             tools:node="merge"
             android:exported="true">
@@ -13,6 +13,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.my.c2cmarketplace.scene.ForResultTestActivity"
+            android:screenOrientation="fullSensor"
+            tools:node="merge"
+            android:exported="false"/>
     </application>
 
 </manifest>
