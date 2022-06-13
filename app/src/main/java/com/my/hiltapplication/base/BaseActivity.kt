@@ -9,13 +9,6 @@ import com.my.hiltapplication.callback.ILogCallback
 import com.my.hiltapplication.util.Log
 
 abstract class BaseActivity<V: ViewDataBinding>: AppCompatActivity(), IActivityCallback, ILogCallback {
-
-//    @Inject
-//    lateinit var userStore : UserStore
-//
-//    @Inject
-//    lateinit var dataStore : DataStore
-
     protected var tag = BaseActivity::class.simpleName
     protected lateinit var contentBinding: V
 
@@ -29,13 +22,11 @@ abstract class BaseActivity<V: ViewDataBinding>: AppCompatActivity(), IActivityC
         Log.e(tag, "onCreate()")
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
 
     private fun setViewDataBinding() {
         this.contentBinding = DataBindingUtil.setContentView(this, this.getContentLayoutId())
         this.contentBinding.lifecycleOwner = this
     }
+
 
 }

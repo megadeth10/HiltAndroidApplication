@@ -162,4 +162,7 @@ dependencies {
 
     // gson
     implementation "com.google.code.gson:gson:$gson_version"
+
+    // TSnackbar fork source https://github.com/iamIcarus/TSnackBar
+    implementation project(":topsnackbar")
 }

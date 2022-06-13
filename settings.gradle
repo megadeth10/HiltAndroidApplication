@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+include ':app', ':topsnackbar'
 rootProject.name = "Hilt Application"
-include ':app'

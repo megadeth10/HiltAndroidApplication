@@ -15,6 +15,7 @@ import androidx.collection.arrayMapOf
 import androidx.core.content.FileProvider
 import com.my.hiltapplication.R
 import com.my.hiltapplication.base.BaseActivity
+import com.my.hiltapplication.base.BaseAlertActivity
 import com.my.hiltapplication.databinding.ActivityForResultTestBinding
 import com.my.hiltapplication.util.*
 import kotlinx.coroutines.CoroutineScope
@@ -29,7 +30,7 @@ import kotlin.jvm.Throws
 /**
  * Created by YourName on 2022/06/13.
  */
-class ForResultTestActivity : BaseActivity<ActivityForResultTestBinding>(), View.OnClickListener {
+class ForResultTestActivity : BaseAlertActivity<ActivityForResultTestBinding>(), View.OnClickListener {
     companion object {
         const val resultData = "test"
     }
@@ -62,7 +63,9 @@ class ForResultTestActivity : BaseActivity<ActivityForResultTestBinding>(), View
         if (falseItem == null) {
             this.callCamera()
         } else {
-            AppUtil.gotoSettingForPermission(this)
+            showSnackbar("권환을 확인해 주세요", R.string.btn_confirm, View.OnClickListener {
+                AppUtil.gotoSettingForPermission(this)
+            })
         }
     }
 
@@ -108,8 +111,8 @@ class ForResultTestActivity : BaseActivity<ActivityForResultTestBinding>(), View
                 activityResultCameraPermission.launch(
                     arrayOf<String>(
                         Manifest.permission.CAMERA,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE
+//                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//                        Manifest.permission.READ_EXTERNAL_STORAGE
                     )
                 )
             }
