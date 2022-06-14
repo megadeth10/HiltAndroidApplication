@@ -153,6 +153,9 @@ abstract class BaseAlertActivity<V: ViewDataBinding>: BaseActivity<V>() {
      */
     private fun getSnackBarActionTextColor(): Int = Util.getColor(this@BaseAlertActivity, R.color.white)
 
+    // Snackbar background color
+    private fun getSnackBarBackgroundColor(): Int = Util.getColor(this@BaseAlertActivity, R.color.red_point)
+
     /**
      * 상단 Snackbar 생성
      */
@@ -165,6 +168,7 @@ abstract class BaseAlertActivity<V: ViewDataBinding>: BaseActivity<V>() {
             val textView: TextView =
                 view.findViewById<View>(com.androidadvance.topsnackbar.R.id.snackbar_text) as TextView
             textView.setTextColor(getSnackBarTextColor())
+            view.setBackgroundColor(getSnackBarBackgroundColor())
         }
     }
 
@@ -179,6 +183,7 @@ abstract class BaseAlertActivity<V: ViewDataBinding>: BaseActivity<V>() {
         ).apply {
             setTextColor(getSnackBarTextColor())
             setActionTextColor(getSnackBarActionTextColor())
+            setBackgroundTint(getSnackBarBackgroundColor())
         }
     }
 
