@@ -175,4 +175,10 @@ dependencies {
 
     // TSnackbar fork source https://github.com/iamIcarus/TSnackBar
     implementation project(":topsnackbar")
+
+    //Room
+    implementation "androidx.room:room-runtime:$androidx_room_version"
+    implementation "androidx.room:room-ktx:$androidx_room_version"
+    //kapt(Annotation Processing for kotlin)
+    kapt "androidx.room:room-compiler:$androidx_room_version"
 }
