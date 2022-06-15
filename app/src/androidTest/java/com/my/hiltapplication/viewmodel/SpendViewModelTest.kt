@@ -40,7 +40,7 @@ class SpendViewModelTest: TestCase() {
     @Test
     fun testSpendViewModel() {
         spendViewModel.addSpend(Spend(Date(),170, "test"))
-        spendViewModel.getDbData()
+//        spendViewModel.getDbData()
         val result = spendViewModel.dataList.getOrAwaitValue()?.find {
             it.amount == 170 && it.description == "test"
         }

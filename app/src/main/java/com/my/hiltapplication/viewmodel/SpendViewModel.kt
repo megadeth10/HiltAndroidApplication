@@ -18,8 +18,8 @@ import javax.inject.Inject
 class SpendViewModel @Inject constructor(
     private val dataTracker : SpendsTrackerDataSource
 ) : BaseViewModel() {
-    private val _dataList : MutableLiveData<ArrayList<Spend>> = MutableLiveData()
-    val dataList : MutableLiveData<ArrayList<Spend>> = this._dataList
+    private val _dataList : MutableLiveData<ArrayList<Spend>?> = MutableLiveData(null)
+    val dataList : MutableLiveData<ArrayList<Spend>?> = this._dataList
 
     fun initData() {
         if (this._dataList.value == null) {
@@ -30,9 +30,9 @@ class SpendViewModel @Inject constructor(
     fun getDbData() {
         viewModelScope.launch {
             val list = dataTracker.getLast20Spends()
-//            if (list.isNotEmpty()) {
+            if (list.isNotEmpty()) {
                 setData(list as ArrayList<Spend>)
-//            }
+            }
         }
     }
 
@@ -53,8 +53,8 @@ class SpendViewModel @Inject constructor(
     fun addSpend(newSpend : Spend) {
         CoroutineScope(Dispatchers.IO).launch {
             this@SpendViewModel.dataTracker.addSpend(newSpend)
-//            _dataList.postValue(null)
-//            this@SpendViewModel.initData()
+            _dataList.postValue(null)
+            this@SpendViewModel.initData()
         }
     }
 
