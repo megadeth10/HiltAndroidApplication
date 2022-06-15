@@ -8,7 +8,9 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.26811594202898553" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.378125" />
         <entry key="app/src/main/res/layout/activity_securepreference.xml" value="0.378125" />
+        <entry key="app/src/main/res/layout/activity_spend_list.xml" value="0.378125" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.378125" />
+        <entry key="app/src/main/res/layout/item_spend.xml" value="0.378125" />
         <entry key="app/src/main/res/layout/layout_circle_progress.xml" value="0.378125" />
         <entry key="app/src/main/res/layout/layout_empty_view.xml" value="0.378125" />
         <entry key="app/src/screen/res/layout/activity_for_result_test.xml" value="0.378125" />

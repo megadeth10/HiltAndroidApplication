@@ -50,6 +50,10 @@ class ShortCutActivity : AppCompatActivity(), View.OnClickListener {
 //                }
 //            ),
             ActivityItem(
+                "Room List",
+                SpendListActivity::class.java,
+            ),
+            ActivityItem(
                 "첫화면",
                 MainActivity::class.java,
             ),

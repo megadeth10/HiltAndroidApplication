@@ -5,6 +5,7 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
+import com.my.hiltapplication.room.datatracker.SpendsTrackerDataSource
 import junit.framework.TestCase
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -33,6 +34,7 @@ class SpendDatabaseTest: TestCase() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         db = Room.inMemoryDatabaseBuilder(context, SpendDatabase::class.java).build()
         dao = db.getSpendDao()
+
     }
 
     @After

@@ -21,10 +21,11 @@ abstract class SpendDatabase : RoomDatabase() {
         private var instance:SpendDatabase? = null
         private val LOCK = Any()
 
-        operator fun invoke(context:Context, dbFileName: String = DB_NAME) {
+        operator fun invoke(context:Context, dbFileName: String = DB_NAME): SpendDatabase {
             instance ?: buildDatabase(context, dbFileName).apply {
                 instance = this.build()
             }
+            return instance!!
         }
 
         private fun buildDatabase(context : Context, dbFileName : String) : Builder<SpendDatabase> {

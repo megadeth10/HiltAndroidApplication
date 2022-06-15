@@ -5,6 +5,9 @@ import com.my.hiltapplication.network.Network
 import com.my.hiltapplication.noupdate.header.HeaderInterceptor
 import com.my.hiltapplication.noupdate.service.CategoryService
 import com.my.hiltapplication.noupdate.service.VersionService
+import com.my.hiltapplication.room.SpendDao
+import com.my.hiltapplication.room.SpendDatabase
+import com.my.hiltapplication.room.datatracker.SpendsTrackerDataSource
 import com.my.hiltapplication.securepreference.SecureSharedPreferences
 import com.my.hiltapplication.store.DataStore
 import com.my.hiltapplication.store.TokenStore
@@ -61,5 +64,23 @@ class SingletonModule {
     @Singleton
     fun getSecurePreference(@ApplicationContext context : Context): SecureSharedPreferences {
         return SecureSharedPreferences(context)
+    }
+
+    @Provides
+    @Singleton
+    fun getSpendDatabase(@ApplicationContext context : Context) : SpendDatabase {
+        return SpendDatabase.invoke(context)
+    }
+
+    @Provides
+    @Singleton
+    fun getSpendDAO(spendDatabase:SpendDatabase) : SpendDao {
+        return spendDatabase.getSpendDao()
+    }
+
+    @Provides
+    @Singleton
+    fun getSpendDataTracker(spendDatabase:SpendDatabase) : SpendsTrackerDataSource {
+        return SpendsTrackerDataSource(spendDatabase.getSpendDao())
     }
 }
