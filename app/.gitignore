@@ -7,3 +7,7 @@
 /src/main/java/com/my/hiltapplication/noupdate/variant/Name.kt
 /src/main/java/com/my/hiltapplication/noupdate/service/CategoryService.kt
 /src/main/java/com/my/hiltapplication/noupdate/service/VersionService.kt
+/src/main/java/com/my/hiltapplication/noupdate/request/CategoryRequestBody.kt
+/src/main/java/com/my/hiltapplication/noupdate/request/LoginUserRequestBody.kt
+/src/main/java/com/my/hiltapplication/noupdate/request/SNSLoginUserRequestBody.kt
+/src/main/java/com/my/hiltapplication/noupdate/service/AuthService.kt
