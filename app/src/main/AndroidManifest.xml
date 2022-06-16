@@ -19,6 +19,9 @@
         tools:targetApi="n">
         <activity
             android:name=".scene.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".scene.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

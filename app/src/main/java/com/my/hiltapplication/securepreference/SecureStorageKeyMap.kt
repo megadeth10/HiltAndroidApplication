@@ -8,4 +8,8 @@ object SecureStorageKeyMap {
      * 앱 통신 토큰
      */
     val USER_TOKEN = "user_token"
+
+    val REFRESH_TOKEN = "refresh_token"
+
+    val USER_KEY = "USER_KEY"
 }
