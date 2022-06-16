@@ -24,7 +24,7 @@ import kotlin.random.Random
  */
 @AndroidEntryPoint
 class SpendListActivity : BaseAlertActivity<ActivitySpendListBinding>(), View.OnClickListener {
-    private val spendViewModel:SpendViewModel by viewModels()
+    private val spendViewModel : SpendViewModel by viewModels()
     private val random = Random(100)
     private var spendAdapter = SpendAdapter()
     override fun onCreate(savedInstanceState : Bundle?) {
@@ -34,7 +34,7 @@ class SpendListActivity : BaseAlertActivity<ActivitySpendListBinding>(), View.On
         this.contentBinding.rvSpendList.adapter = this.spendAdapter
         this.contentBinding.rvSpendList.layoutManager = LinearLayoutManager(this)
         this.spendViewModel.dataList.observe(this, androidx.lifecycle.Observer {
-            it?.let{ list ->
+            it?.let { list ->
                 this@SpendListActivity.setList(list)
             }
         })
@@ -45,7 +45,7 @@ class SpendListActivity : BaseAlertActivity<ActivitySpendListBinding>(), View.On
             val layoutManager = contentBinding.rvSpendList.layoutManager
             var firstPosition = 0
             var lastPosition = 0
-            if(layoutManager is LinearLayoutManager) {
+            if (layoutManager is LinearLayoutManager) {
                 firstPosition = layoutManager.findFirstVisibleItemPosition()
                 lastPosition = layoutManager.findLastVisibleItemPosition()
             }
@@ -66,15 +66,26 @@ class SpendListActivity : BaseAlertActivity<ActivitySpendListBinding>(), View.On
     override fun onClick(p0 : View?) {
         when (p0?.id) {
             this.contentBinding.btnAction.id -> {
-                val newSpend = Spend(
-                    Date(),
-                    random.nextInt(),
-                    "aaa ${random.nextInt()}"
-                )
-                this.spendViewModel.addSpend(newSpend)
+//                val newSpend = Spend(
+//                    Date(),
+//                    random.nextInt(),
+//                    "aaa ${random.nextInt()}"
+//                )
+                val amount = this.contentBinding.etAmount.text.toString().toInt()
+                val description = this.contentBinding.etDescription.text.toString()
+                if (amount > 0 && description.isNotEmpty()) {
+                    val newSpend = Spend(
+                        Date(),
+                        amount,
+                        description
+                    )
+                    this.spendViewModel.addSpend(newSpend)
+                } else {
+                    showSnackbar("wrong Data")
+                }
             }
             this.contentBinding.btnAction2.id -> {
-
+                this.spendViewModel.removeSpends()
             }
         }
     }

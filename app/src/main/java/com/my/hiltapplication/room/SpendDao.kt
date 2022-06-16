@@ -1,6 +1,7 @@
 package com.my.hiltapplication.room
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 
@@ -14,4 +15,7 @@ interface SpendDao {
 
     @Query("SELECT * FROM spends ORDER BY date DESC LIMIT 20")
     suspend fun getSpends() : List<Spend>
+
+    @Delete
+    suspend fun removeAll(list: List<Spend>)
 }

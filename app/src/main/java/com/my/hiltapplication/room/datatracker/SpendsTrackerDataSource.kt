@@ -12,4 +12,6 @@ class SpendsTrackerDataSource(
     suspend fun addSpend(spend: Spend) = db.addSpend(spend)
 
     suspend fun getLast20Spends() = db.getSpends()
+
+    suspend fun removeAll(list:List<Spend>) = db.removeAll(list)
 }

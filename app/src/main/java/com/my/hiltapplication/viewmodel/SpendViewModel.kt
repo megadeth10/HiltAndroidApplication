@@ -58,5 +58,13 @@ class SpendViewModel @Inject constructor(
         }
     }
 
+    fun removeSpends() {
+        CoroutineScope(Dispatchers.IO).launch {
+            this@SpendViewModel.dataList.value?.let {
+                this@SpendViewModel.dataTracker.removeAll(it)
+            }
+        }
+    }
+
     override fun getLogName() = SpendViewModel::class.simpleName
 }
