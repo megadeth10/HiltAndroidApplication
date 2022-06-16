@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.my.hiltapplication.base.BaseNetworkViewModel
 import com.my.hiltapplication.network.NetworkUtil
-import com.my.hiltapplication.noupdate.response.CategoryRequestBody
+import com.my.hiltapplication.noupdate.request.CategoryRequestBody
 import com.my.hiltapplication.noupdate.response.CategoryResponse
 import com.my.hiltapplication.noupdate.service.CategoryService
 import dagger.hilt.android.lifecycle.HiltViewModel
