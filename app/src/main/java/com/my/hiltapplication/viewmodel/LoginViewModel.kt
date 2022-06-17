@@ -4,9 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import com.my.hiltapplication.base.BaseNetworkViewModel
 import com.my.hiltapplication.network.NetworkUtil
 import com.my.hiltapplication.noupdate.request.LoginUserRequestBody
+import com.my.hiltapplication.noupdate.response.Customer
 import com.my.hiltapplication.noupdate.response.LoginUserResponse
 import com.my.hiltapplication.noupdate.response.ResultResponse
 import com.my.hiltapplication.noupdate.service.AuthService
+import com.my.hiltapplication.noupdate.service.CustomerService
 import com.my.hiltapplication.noupdate.variant.Name
 import com.my.hiltapplication.store.TokenStore
 import com.my.hiltapplication.util.AES128Util
@@ -19,14 +21,23 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val authService : AuthService,
-    private val tokenStore : TokenStore
+    private val tokenStore : TokenStore,
+    private val customerService : CustomerService
 ) : BaseNetworkViewModel() {
     private val apiNameAuth = "api_name_get_auth"
     private val apiNameExpiredAuth = "api_name_expired_auth"
+    private val apiNameUserInfo = "api_name_userInfo"
 
     private var aes128Util : AES128Util = AES128Util(Name.aes256key)
     private val _resultText : MutableLiveData<String> = MutableLiveData()
     val resultText : MutableLiveData<String> = _resultText
+
+    private val _userInfo : MutableLiveData<String> = MutableLiveData()
+    val userInfo : MutableLiveData<String> = _userInfo
+
+    private fun setUserInfo(text : String) {
+        this.userInfo.postValue(text)
+    }
 
     private fun setResultText(text : String) {
         this._resultText.postValue(text)
@@ -81,6 +92,24 @@ class LoginViewModel @Inject constructor(
                     setProgress(false)
                     tokenStore.expiredToken()
                     setResultText("expired auth false")
+                }
+            )
+        )
+    }
+
+    fun getUserInfo() {
+        this.setUserInfo("")
+        cancelObserver(this.apiNameUserInfo)
+        addObserver(
+            this.apiNameUserInfo,
+            this.customerService.setObserver(this.customerService.getModule().getUserInfo(),
+                onSuccess = {
+                    if (it is Customer) {
+                        setUserInfo("nickname: ${it.nickname}, phone:${it.phone}")
+                    }
+                },
+                onError = {
+                    setUserInfo("getUserInfo false")
                 }
             )
         )

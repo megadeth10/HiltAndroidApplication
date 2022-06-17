@@ -15,6 +15,26 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_user_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:hint="사용자 정보"
+                android:lines="1"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="사용자 정보" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_get_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="사용자 정보 요청"
+                app:layout_constraintBottom_toTopOf="@id/et_id"
+                app:layout_constraintTop_toBottomOf="@id/et_user_info" />
+
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -25,7 +45,7 @@
                 android:lines="1"
                 android:text="12341234"
                 app:layout_constraintBottom_toTopOf="@id/et_id"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/btn_get_user" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_pw"
@@ -63,7 +83,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@id/container_input"
-            tools:text="결과 출력"/>
+            tools:text="결과 출력" />
 
         <FrameLayout
             android:id="@+id/fl_progress"

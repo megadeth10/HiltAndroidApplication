@@ -3,7 +3,9 @@ package com.my.hiltapplication.module
 import android.content.Context
 import com.my.hiltapplication.network.Network
 import com.my.hiltapplication.noupdate.header.HeaderInterceptor
+import com.my.hiltapplication.noupdate.service.AuthService
 import com.my.hiltapplication.noupdate.service.CategoryService
+import com.my.hiltapplication.noupdate.service.CustomerService
 import com.my.hiltapplication.noupdate.service.VersionService
 import com.my.hiltapplication.room.SpendDao
 import com.my.hiltapplication.room.SpendDatabase
@@ -25,7 +27,10 @@ class SingletonModule {
 
     @Provides
     @Singleton
-    fun getTokenStore(userStore : UserStore, secureSharedPreferences:SecureSharedPreferences) : TokenStore {
+    fun getTokenStore(
+        userStore : UserStore,
+        secureSharedPreferences : SecureSharedPreferences
+    ) : TokenStore {
         return TokenStore(userStore, secureSharedPreferences)
     }
 
@@ -62,7 +67,7 @@ class SingletonModule {
 
     @Provides
     @Singleton
-    fun getSecurePreference(@ApplicationContext context : Context): SecureSharedPreferences {
+    fun getSecurePreference(@ApplicationContext context : Context) : SecureSharedPreferences {
         return SecureSharedPreferences(context)
     }
 
@@ -74,13 +79,25 @@ class SingletonModule {
 
     @Provides
     @Singleton
-    fun getSpendDAO(spendDatabase:SpendDatabase) : SpendDao {
+    fun getSpendDAO(spendDatabase : SpendDatabase) : SpendDao {
         return spendDatabase.getSpendDao()
     }
 
     @Provides
     @Singleton
-    fun getSpendDataTracker(spendDatabase:SpendDatabase) : SpendsTrackerDataSource {
+    fun getSpendDataTracker(spendDatabase : SpendDatabase) : SpendsTrackerDataSource {
         return SpendsTrackerDataSource(spendDatabase.getSpendDao())
+    }
+
+    @Provides
+    @Singleton
+    fun getAuthService(tokenStore : TokenStore) : AuthService {
+        return AuthService(getNetwork(tokenStore))
+    }
+
+    @Provides
+    @Singleton
+    fun getCustomerService(tokenStore : TokenStore) : CustomerService {
+        return CustomerService(getNetwork(tokenStore))
     }
 }

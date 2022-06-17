@@ -11,5 +11,7 @@ object SecureStorageKeyMap {
 
     val REFRESH_TOKEN = "refresh_token"
 
-    val USER_KEY = "USER_KEY"
+    val USER_KEY = "user_key"
+
+    val APP_PAUSE_TIME = "pause_time"
 }
