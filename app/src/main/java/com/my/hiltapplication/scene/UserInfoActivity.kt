@@ -1,5 +1,6 @@
 package com.my.hiltapplication.scene
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -23,6 +24,7 @@ class UserInfoActivity : BaseNetworkActivity<ActivityUserInfoBinding>(), View.On
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         this.contentBinding.btnGetUser.setOnClickListener(this)
+        this.contentBinding.btnNextSceen.setOnClickListener(this)
 
         this.userInfoViewModel.userInfo.observe(this, Observer {
             this.setUserInfo(it)
@@ -54,6 +56,9 @@ class UserInfoActivity : BaseNetworkActivity<ActivityUserInfoBinding>(), View.On
         when (p0?.id) {
             this.contentBinding.btnGetUser.id -> {
                 this.userInfoViewModel.getUserInfo()
+            }
+            this.contentBinding.btnNextSceen.id -> {
+                startActivity(Intent(this, LoginActivity::class.java))
             }
         }
     }

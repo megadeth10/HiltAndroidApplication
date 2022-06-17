@@ -10,6 +10,7 @@
         <entry key="app/src/main/res/layout/activity_spend_list.xml" value="0.10733695652173914" />
         <entry key="app/src/main/res/layout/activity_user_info.xml" value="0.378125" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.378125" />
+        <entry key="app/src/main/res/layout/item_spend.xml" value="0.12092391304347826" />
         <entry key="app/src/main/res/layout/layout_circle_progress.xml" value="0.1838905775075988" />
       </map>
     </option>

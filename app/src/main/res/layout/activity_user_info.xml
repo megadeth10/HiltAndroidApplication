@@ -31,8 +31,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="사용자 정보 요청"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/btn_next_sceen"
                 app:layout_constraintTop_toBottomOf="@id/et_user_info" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_next_sceen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="다음 화면"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_get_user" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <FrameLayout

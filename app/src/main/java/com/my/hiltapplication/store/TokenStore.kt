@@ -115,7 +115,10 @@ class TokenStore @Inject constructor(
             val currentTime = Calendar.getInstance().timeInMillis
             val appPauseTime = abs(currentTime - (pauseTime))
 
-            if (appPauseTime >= this.tokenExpiredTimeInMillisecond || this.storeState != StateStore.Run) {
+            if (appPauseTime >= this.tokenExpiredTimeInMillisecond ||
+                this.storeState != StateStore.Run ||
+                appPauseTime == 0L
+            ) {
                 // refreshToken
                 this.getNewToken()
             } else if (appPauseTime >= this.repeatTimeInMillisecond) {
@@ -223,8 +226,7 @@ class TokenStore @Inject constructor(
      */
     private fun setBasicAuthAndRun() {
         this.setInit(Name.token, null, null)
-        this.setState(StateStore.Run)
-        this.callStateUpdate(StateStore.Run)
+        this.setAndUpdateState(StateStore.Run)
     }
 
     /**
@@ -232,8 +234,12 @@ class TokenStore @Inject constructor(
      */
     private fun setUserAuthAndRun() {
         this.tokenUpdateTime()
-        this.setState(StateStore.Run)
-        this.callStateUpdate(StateStore.Run)
+        this.setAndUpdateState(StateStore.Run)
+    }
+
+    private fun setAndUpdateState(newState : StateStore) {
+        this.setState(newState)
+        this.callStateUpdate(newState)
     }
 
     private fun setInit(token : String, refreshToken : String?, key : String?) {
