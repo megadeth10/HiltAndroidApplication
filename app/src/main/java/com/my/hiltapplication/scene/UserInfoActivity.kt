@@ -25,6 +25,7 @@ class UserInfoActivity : BaseNetworkActivity<ActivityUserInfoBinding>(), View.On
         super.onCreate(savedInstanceState)
         this.contentBinding.btnGetUser.setOnClickListener(this)
         this.contentBinding.btnNextSceen.setOnClickListener(this)
+        this.contentBinding.btnSaveState.setOnClickListener(this)
 
         this.userInfoViewModel.userInfo.observe(this, Observer {
             this.setUserInfo(it)
@@ -59,6 +60,11 @@ class UserInfoActivity : BaseNetworkActivity<ActivityUserInfoBinding>(), View.On
             }
             this.contentBinding.btnNextSceen.id -> {
                 startActivity(Intent(this, LoginActivity::class.java))
+            }
+            this.contentBinding.btnSaveState.id -> {
+                startActivity(Intent(this, SaveStateHandlerActivity::class.java).apply {
+                    this.putExtra(SaveStateHandlerActivity.ParamName, "aaaaa")
+                })
             }
         }
     }
