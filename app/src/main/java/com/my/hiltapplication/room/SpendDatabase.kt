@@ -9,7 +9,7 @@ import androidx.room.TypeConverters
 /**
  * Created by YourName on 2022/06/14.
  */
-@Database(entities = [Spend::class], version = 1)
+@Database(entities = [Spend::class], version = 1, exportSchema = false)
 @TypeConverters(SpendDataConverter::class)
 abstract class SpendDatabase : RoomDatabase() {
     abstract fun getSpendDao() : SpendDao
