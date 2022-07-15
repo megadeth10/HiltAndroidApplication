@@ -9,6 +9,7 @@ import com.my.hiltapplication.R
 import com.my.hiltapplication.base.BaseNetworkActivity
 import com.my.hiltapplication.databinding.ActivityUserInfoBinding
 import com.my.hiltapplication.util.Log
+import com.my.hiltapplication.viewmodel.TestViewModel
 import com.my.hiltapplication.viewmodel.UserInfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -21,12 +22,13 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class UserInfoActivity : BaseNetworkActivity<ActivityUserInfoBinding>(), View.OnClickListener {
     private val userInfoViewModel : UserInfoViewModel by viewModels()
+    private val testViewModel by viewModels<TestViewModel>()
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         this.contentBinding.btnGetUser.setOnClickListener(this)
         this.contentBinding.btnNextSceen.setOnClickListener(this)
         this.contentBinding.btnSaveState.setOnClickListener(this)
-
+        testViewModel
         this.userInfoViewModel.userInfo.observe(this, Observer {
             this.setUserInfo(it)
         })
