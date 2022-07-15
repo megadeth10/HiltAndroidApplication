@@ -28,7 +28,7 @@ class UserInfoActivity : BaseNetworkActivity<ActivityUserInfoBinding>(), View.On
         this.contentBinding.btnGetUser.setOnClickListener(this)
         this.contentBinding.btnNextSceen.setOnClickListener(this)
         this.contentBinding.btnSaveState.setOnClickListener(this)
-        testViewModel
+
         this.userInfoViewModel.userInfo.observe(this, Observer {
             this.setUserInfo(it)
         })
