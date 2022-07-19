@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.Observer
 import com.my.hiltapplication.R
 import com.my.hiltapplication.base.BaseNetworkActivity
@@ -46,6 +47,9 @@ class UserInfoActivity : BaseNetworkActivity<ActivityUserInfoBinding>(), View.On
         }
     }
 
+    @VisibleForTesting(otherwise = VisibleForTesting.NONE)
+    fun getUserInfo() = userInfoViewModel.userInfo
+
     private fun setUserInfo(it : String?) {
         CoroutineScope(Dispatchers.Main).launch {
             this@UserInfoActivity.contentBinding.etUserInfo.setText(it)
@@ -58,6 +62,7 @@ class UserInfoActivity : BaseNetworkActivity<ActivityUserInfoBinding>(), View.On
     override fun onClick(p0 : View?) {
         when (p0?.id) {
             this.contentBinding.btnGetUser.id -> {
+                this.setUserInfo("")
                 this.userInfoViewModel.getUserInfo()
             }
             this.contentBinding.btnNextSceen.id -> {

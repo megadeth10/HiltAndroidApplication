@@ -1,5 +1,6 @@
 package com.my.hiltapplication.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.my.hiltapplication.base.BaseNetworkViewModel
 import com.my.hiltapplication.noupdate.response.Customer
@@ -16,16 +17,15 @@ class UserInfoViewModel @Inject constructor(
 ) : BaseNetworkViewModel() {
     private val apiNameUserInfo = "api_name_userInfo"
 
-    private val _userInfo : MutableLiveData<String> = MutableLiveData()
-    val userInfo : MutableLiveData<String> = _userInfo
+    private val _userInfo : MutableLiveData<String?> = MutableLiveData()
+    val userInfo : LiveData<String?> = _userInfo
 
-    private fun setUserInfo(text : String) {
-        this.userInfo.postValue(text)
+    private fun setUserInfo(text : String?) {
+        this._userInfo.postValue(text)
     }
 
     fun getUserInfo() {
         this.setProgress(true)
-        this.setUserInfo("")
         cancelObserver(this.apiNameUserInfo)
         addObserver(
             this.apiNameUserInfo,
